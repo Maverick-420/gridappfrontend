@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 
-const socket = io("https://gridappbackend.onrender.com/");
+const socket = io("https://gridappbackend.onrender.com", {
+  transports: ["websocket", "polling"],
+});
 
 const App = () => {
   const [name, setName] = useState("");
