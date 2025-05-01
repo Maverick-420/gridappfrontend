@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://gridappbackend.onrender.com/");
 
 const App = () => {
   const [name, setName] = useState("");
@@ -12,7 +12,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/grid")
+      .get("https://gridappbackend.onrender.com/grid")
       .then((res) => {
         const gridMap = {};
         res.data.forEach((cell) => {
@@ -58,7 +58,7 @@ const App = () => {
     if (gridData[cellId]) return;
 
     axios
-      .post("http://localhost:5000/add", {
+      .post("https://gridappbackend.onrender.com/add", {
         row,
         col,
         username: name,
@@ -71,7 +71,7 @@ const App = () => {
 
   const handleButton = () => {
     axios
-      .post("http://localhost:5000/delete", { username: name })
+      .post("https://gridappbackend.onrender.com/delete", { username: name })
       .catch(console.error);
   };
 
@@ -81,7 +81,7 @@ const App = () => {
     setShowPopup(false);
   };
 
-  const renderGrid=() => {
+  const renderGrid = () => {
     const rows = [];
     for (let row = 0; row < 8; row++) {
       const cols = [];
